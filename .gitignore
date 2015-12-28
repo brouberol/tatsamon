@@ -1,0 +1,9 @@
+.tmp
+.idea
+dist
+.dist
+build
+.build
+*.orig
+.DS_Store
+tatsamon
