@@ -1,14 +1,14 @@
 # Overview
 
-Tatsamon monitor your sailabove containers.
+Tatsamon monitors your Sailabove containers.
 
-Each 10min : list all yours containers,
+Every 10min : list all yours containers,
 
-* If not runnning -> send an alarm and/or event on Tat through al2tat (https://github.com/ovh/al2tat) service :
-Each 30s : HTTP GET on a path on all your container (default path : /ping, flag path_to_check).
+* If not runnning -> send an alarm and/or event to Tat through the al2tat (https://github.com/ovh/al2tat) service :
+Every 30s : HTTP GET on a path on all your container (default path : ``/ping``, flag path_to_check).
 
-* If not OK (no response or http status not 200) -> send an alarm and/or event on Tat (https://github.com/ovh/tat) through al2tat service :
-Tatsamon have to be deployed with your sailabove account. Please ask Team CD to deploy an instance for you.
+* If not OK (no response or http status not 200) -> send an alarm and/or event to Tat (https://github.com/ovh/tat) through the al2tat service :
+Tatsamon has to be deployed with your sailabove account. Please ask Team CD to deploy an instance for you.
 
 # Rules
 
@@ -16,13 +16,13 @@ One alarm and/or event max per 10min sent to Tat (https://github.com/ovh/tat)
 If service tat or al2tat is down -> send a mail
 
 # Alarm and/or event
-AL2Tat manage alerts and event monitoring.
+AL2Tat manages alerts and event monitoring.
 
 Tatsamon can generate alerts and or event monitoring on Tat.
 
 * An alert is purged (about 60 days after creation on tat). Best Tat view for theses : RunView
 
-* An event monitoring is attached to on item (host, soft, person... whatever), all events are held three days, and only 30 events are retained after 3d. Best Tat view for theses : Monitoring View
+* An event monitoring is attached to an item (host, soft, person... whatever), all events are held three days, and only 30 events are retained after 3 days. Best Tat view for theses : Monitoring View
 
 You can activate both with tatsamon.
 
@@ -30,20 +30,20 @@ You can activate both with tatsamon.
 
 ## Scheduler
 
-Tatsamon can be used by two ways : internal scheduler or external Scheduler.
+Tatsamon can be used by two ways : internal scheduler or external sheduler.
 
-* Internal Scheduler : each 10 minutes (flag cron-check-sailabove), call sailabove API and each 30 seconds (flag cron-check-containers), check all containers
-* External Scheduler : you have to use an external system to make a HTTP GET on /containers/check. Each 10 minutes (flag cron-check-sailabove), call sailabove API to refresh list of containers.
+* Internal scheduler : every 10 minutes (flag cron-check-sailabove), call sailabove API and check all containers every 30 seconds (flag cron-check-containers)
+* External scheduler : you have to use an external system to make a HTTP GET on ``/containers/check``. Call Sailabove API every 10 minutes (flag cron-check-sailabove) to refresh the list of containers.
 
 ## API
 
-### GET /applications
+### ``GET /applications``
 
-This endpoint gives you sailabove informations on yours containers and refresh internal tatsamon list of containers.
+This endpoint gives you sailabove information on your containers and refreshes the internal tatsamon list of containers.
 
-### GET /containers/check
+### ``GET /containers/check``
 
-This endpoint can be called by an external scheduler to run test on yours containers.
+This endpoint can be called by an external scheduler to run test on your containers.
 
 ## Options
 ```
